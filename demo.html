@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Demo</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="brainfuck.js"></script>
+        <script src="sleep.js"></script>
+        <script>var $ = $ || {};</script>
+    </head>
+    <body>
+        <h1>Code in Sleep</h1>
+        <textarea id="code" style="width:624px;height:300px;">zzz zzz zzz zzz zzz zzz zzz zzz zzz zzz zzzzzzz z zzz zzz zzz zzz zzz zzz zzz z zzz zzz zzz zzz zzz zzz zzz zzz zzz zzz z zzz zzz zzz z zzz zz zz zz zz zzzz zzzzzzzz z zzz zzz zzzzz z zzz zzzzz zzz zzz zzz zzz zzz zzz zzz zzzzz zzzzz zzz zzz zzz zzzzz z zzz zzz zzzzz zz zz zzz zzz zzz zzz zzz zzz zzz zzz zzz zzz zzz zzz zzz zzz zzz zzzzz z zzzzz zzz zzz zzz zzzzz zzzz zzzz zzzz zzzz zzzz zzzz zzzzz zzzz zzzz zzzz zzzz zzzz zzzz zzzz zzzz zzzzz z zzz zzzzz z zzzzz</textarea>
+        <br />
+        <center>
+            <button id="run">Try it</button>
+        </center>
+        <script>
+            $(document).ready(function () {
+                $('#run').click(function () {
+                    var code = $('#code').val(),
+                        // runtime = new $.brainfuck(code);
+                        runtime = $.sleep(code);
+                    runtime.run().out().reset();
+                });
+            });
+        </script>
+    </body>
+</html>
