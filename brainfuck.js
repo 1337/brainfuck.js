@@ -60,12 +60,14 @@ var $ = $ || {};
         this.out = function () {
             alert(buffer);
             buffer = "";
+            return this;
         };
 
         this.reset = function () {
             pointer = 0;
             pA = [];
             buffer = "";
+            return this;
         };
     };
 
