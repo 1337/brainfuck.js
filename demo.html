@@ -2,10 +2,8 @@
 <html>
     <head>
         <title>Demo</title>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="brainfuck.js"></script>
         <script src="sleep.js"></script>
-        <script>var $ = $ || {};</script>
     </head>
     <body>
         <h1>Code in Sleep</h1>
@@ -15,14 +13,11 @@
             <button id="run">Try it</button>
         </center>
         <script>
-            $(document).ready(function () {
-                $('#run').click(function () {
-                    var code = $('#code').val(),
-                        // runtime = new $.brainfuck(code);
-                        runtime = $.sleep(code);
-                    runtime.run().out().reset();
-                });
-            });
+            document.getElementById('run').onclick = function () {
+                var code = document.getElementById('code').value,
+                    runtime = new Sleep(code);
+                runtime.run().out();
+            };
         </script>
     </body>
 </html>
