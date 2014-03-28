@@ -8,6 +8,7 @@
 class Chinese extends BrainFuck
     constructor: (code) ->
         @code = code.split(/[\n\s]/).map(@to_bf).join("")
+        super(@code)
 
     to_bf: (inca) ->
         try

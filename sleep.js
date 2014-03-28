@@ -9,6 +9,7 @@
 
     function Sleep(code) {
       this.code = code.split(/[\n\s]/).map(this.to_bf).join("");
+      Sleep.__super__.constructor.call(this, this.code);
     }
 
     Sleep.prototype.to_bf = function(inca) {

@@ -4,40 +4,47 @@
 #
 #    MIT Licence
 #
+pointer = 0  # current memory address
+stack = []  # array of values (memory)
+buffer = ""
+
+reset = ->
+    pointer = 0
+    stack = []
+    buffer = ""
+
+
 class BrainFuck
-    pointer: 0  # current memory address
-    stack: []  # array of values (memory)
-    buffer: ""
     constructor: (@code) ->
 
     run: (code=@code) ->
-        @pointer = 0
+        pointer = 0
         index = -1
         while index++ < code.length
 
             # prevent miscalculations
-            if isNaN @stack[@pointer]
-                @stack[@pointer] = 0
+            if isNaN stack[pointer]
+                stack[pointer] = 0
 
             switch code[index]
                 when ">"
-                    @pointer++
+                    pointer++
                 when "<"
-                    @pointer--
+                    pointer--
                 when "+"
-                    @stack[@pointer]++
+                    stack[pointer]++
                 when "-"
-                    if @stack[@pointer] > 0
-                        @stack[@pointer]--
+                    if stack[pointer] > 0
+                        stack[pointer]--
                 when "."
-                    @buffer += String.fromCharCode(@stack[@pointer])
+                    buffer += String.fromCharCode(stack[pointer])
                 when ","
-                    @stack[@pointer] = prompt()
+                    stack[pointer] = prompt()
                 when "["
                     # while condition intercepted by code termination in ']'
                     index += (new BrainFuck(@code.substring(index + 1))).run()
                 when "]"
-                    if @stack[@pointer] is 0
+                    if stack[pointer] is 0
                         return index + 1
                     index = -1
                 else
@@ -45,8 +52,6 @@ class BrainFuck
 
     out: (execute=true, reset=true) ->
         # completes the interpretation and outputs the result
-        buffer = @buffer
-
         if execute
             try
                 eval buffer
@@ -54,12 +59,9 @@ class BrainFuck
                 alert buffer
         if reset
             @reset()
-        buffer
 
     reset: ->
-        @pointer = 0
-        @stack = []
-        @buffer = ""
+        reset()
         @
 
 # lazy

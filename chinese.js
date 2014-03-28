@@ -9,6 +9,7 @@
 
     function Chinese(code) {
       this.code = code.split(/[\n\s]/).map(this.to_bf).join("");
+      Chinese.__super__.constructor.call(this, this.code);
     }
 
     Chinese.prototype.to_bf = function(inca) {
