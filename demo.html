@@ -16,7 +16,8 @@
             document.getElementById('run').onclick = function () {
                 var code = document.getElementById('code').value,
                     runtime = new Sleep(code);
-                runtime.run().out();
+
+                alert(runtime.run().out(false));
             };
         </script>
     </body>

@@ -46,7 +46,7 @@
             this.stack[this.pointer] = prompt();
             break;
           case "[":
-            index += new BrainFuck(this.code.substring(index + 1)).run();
+            index += (new BrainFuck(this.code.substring(index + 1))).run();
             break;
           case "]":
             if (this.stack[this.pointer] === 0) {

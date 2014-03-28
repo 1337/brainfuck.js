@@ -5,7 +5,7 @@
 #
 #    MIT Licence
 #
-class Sleep extends BrainFuck
+class Chinese extends BrainFuck
     constructor: (code) ->
         @code = code.split(/[\n\s]/).map(@to_bf).join("")
 

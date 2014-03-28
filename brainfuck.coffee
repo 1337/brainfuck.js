@@ -35,7 +35,7 @@ class BrainFuck
                     @stack[@pointer] = prompt()
                 when "["
                     # while condition intercepted by code termination in ']'
-                    index += new BrainFuck(@code.substring(index + 1)).run()
+                    index += (new BrainFuck(@code.substring(index + 1))).run()
                 when "]"
                     if @stack[@pointer] is 0
                         return index + 1
