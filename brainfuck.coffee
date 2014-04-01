@@ -105,5 +105,18 @@ BrainFuck.to_js = (bf) ->
     runtime.reset()
 
 
+# strap on some automatic text/brainfuck magic
+previous_onload = window.onload
+window.onload = ->
+    if previous_onload
+        previous_onload.apply(this, arguments)
+
+    script_tags = document.getElementsByTagName('script')
+    for tag in script_tags
+        if tag.type.toLowerCase() is 'text/brainfuck'
+            setTimeout(->
+                BrainFuck.to_js(tag.innerHTML)
+            , 0)
+
 # lazy
 window.BrainFuck = BrainFuck
