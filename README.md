@@ -1,9 +1,11 @@
-# brainfuck.js / sleep.js
+# brainfuck.js / chinese.js / sleep.js
 
 ## What does this contain?
-* **brainfuck** interpreter: run brainfuck code in your browser.
-* **sleep** to brainfuck converter: allows you to code in sleep.
+* **js2brainfuck**: turn js code into brainfuck.
+* **brainfuck2js**: run brainfuck code in your browser.
+* **brainfuck.bf**: `brainfuck.js` converted by `brainfuck.js`.
 * **chinese** to brainfuck converter: allows you to code in chinese.
+* **sleep** to brainfuck converter: allows you to code in sleep.
 
 ## Demos
 
