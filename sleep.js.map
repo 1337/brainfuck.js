@@ -1,0 +1,17 @@
+
+/usr/local/lib/node_modules/coffee-script/lib/coffee-script/optparse.js:51
+            throw new Error("unrecognized option: " + arg);
+                  ^
+Error: unrecognized option: --source-map
+  at OptionParser.exports.OptionParser.OptionParser.parse (/usr/local/lib/node_modules/coffee-script/lib/coffee-script/optparse.js:51:19)
+  at parseOptions (/usr/local/lib/node_modules/coffee-script/lib/coffee-script/command.js:509:29)
+  at Object.exports.run (/usr/local/lib/node_modules/coffee-script/lib/coffee-script/command.js:56:5)
+  at Object.<anonymous> (/usr/local/lib/node_modules/coffee-script/bin/coffee:7:41)
+  at Module._compile (module.js:449:26)
+  at Object.Module._extensions..js (module.js:467:10)
+  at Module.load (module.js:349:32)
+  at Function.Module._load (module.js:305:12)
+  at Function.Module.runMain (module.js:490:10)
+  at startup (node.js:121:16)
+  at node.js:764:3
+

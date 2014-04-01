@@ -60,9 +60,50 @@ class BrainFuck
         if reset
             @reset()
 
+        @toString()
+
+    toString: ->
+        buffer
+
     reset: ->
         reset()
         @
+
+
+BrainFuck.from_js = (js='alert(undefined);') ->
+    # translate js to bf.
+    moveChar = (a, b) ->
+        # returns the bit shifts required to move current value from a to b.
+        # a and b are things with .charCodeAt()s.
+        ordA = a.charCodeAt(0)
+        ordB = b.charCodeAt(0)
+        diff = ordB - ordA
+        if diff == 0
+            "."
+        else if diff > 0
+            Array(diff + 1).join("+") + "."
+        else if diff < 0
+            Array(-diff + 1).join("-") + "."
+
+    js = "eval('" + js.replace(/'/g, "\\'") + "');"
+    brainfuck_buffer = ""
+    charAt = String.fromCharCode(0)
+
+    while js.length > 0
+        brainfuck_buffer += moveChar(charAt, js[0])
+        charAt = js[0]
+        js = js.substring(1)
+
+    return brainfuck_buffer
+
+
+BrainFuck.to_js = (bf) ->
+    # run bf as js.
+    runtime = new BrainFuck(bf)
+    src = runtime.run().out(false, false)
+    eval(src)
+    runtime.reset()
+
 
 # lazy
 window.BrainFuck = BrainFuck

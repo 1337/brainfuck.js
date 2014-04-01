@@ -38,5 +38,3 @@
   window.Sleep = Sleep;
 
 }).call(this);
-
-//# sourceMappingURL=sleep.map

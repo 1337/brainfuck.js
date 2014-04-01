@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Demo</title>
+        <script src="brainfuck.js"></script>
+        <style type="text/css">
+            body {
+                text-align: center;
+            }
+            textarea {
+                width:624px;
+                height:300px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>JS to BF (and back)</h1>
+        <textarea id="code">alert(undefined);</textarea>
+        <textarea id="bf"></textarea>
+        <br />
+        <button id="run">Try it</button>
+
+        <script>
+            document.getElementById('run').onclick = function () {
+                var code = document.getElementById('code').value,
+                    bfScript = BrainFuck.from_js(code);
+
+                document.getElementById('bf').value = bfScript;
+
+                BrainFuck.to_js(bfScript);
+            };
+        </script>
+    </body>
+</html>

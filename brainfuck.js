@@ -82,8 +82,13 @@
         }
       }
       if (reset) {
-        return this.reset();
+        this.reset();
       }
+      return this.toString();
+    };
+
+    BrainFuck.prototype.toString = function() {
+      return buffer;
     };
 
     BrainFuck.prototype.reset = function() {
@@ -95,8 +100,43 @@
 
   })();
 
+  BrainFuck.from_js = function(js) {
+    var brainfuck_buffer, charAt, moveChar;
+    if (js == null) {
+      js = 'alert(undefined);';
+    }
+    moveChar = function(a, b) {
+      var diff, ordA, ordB;
+      ordA = a.charCodeAt(0);
+      ordB = b.charCodeAt(0);
+      diff = ordB - ordA;
+      if (diff === 0) {
+        return ".";
+      } else if (diff > 0) {
+        return Array(diff + 1).join("+") + ".";
+      } else if (diff < 0) {
+        return Array(-diff + 1).join("-") + ".";
+      }
+    };
+    js = "eval('" + js.replace(/'/g, "\\'") + "');";
+    brainfuck_buffer = "";
+    charAt = String.fromCharCode(0);
+    while (js.length > 0) {
+      brainfuck_buffer += moveChar(charAt, js[0]);
+      charAt = js[0];
+      js = js.substring(1);
+    }
+    return brainfuck_buffer;
+  };
+
+  BrainFuck.to_js = function(bf) {
+    var runtime, src;
+    runtime = new BrainFuck(bf);
+    src = runtime.run().out(false, false);
+    eval(src);
+    return runtime.reset();
+  };
+
   window.BrainFuck = BrainFuck;
 
 }).call(this);
-
-//# sourceMappingURL=brainfuck.map
