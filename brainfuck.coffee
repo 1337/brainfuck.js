@@ -13,6 +13,21 @@ reset = ->
     stack = []
     buffer = ""
 
+# taken from this jackass
+# http://stackoverflow.com/questions/8567114/how-to-make-an-ajax-call-without-jquery#comment26730310_8567149
+jax = (url, callback) ->
+    if window.XMLHttpRequest
+        xmlhttp = new XMLHttpRequest()
+    else
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
+
+    xmlhttp.onreadystatechange = ->
+        if xmlhttp.readyState == 4 and xmlhttp.status == 200
+            callback(xmlhttp.responseText or xmlhttp.response)
+
+    xmlhttp.open "GET", url, true
+    xmlhttp.send()
+
 
 class BrainFuck
     constructor: (@code) ->
@@ -114,9 +129,13 @@ window.onload = ->
     script_tags = document.getElementsByTagName('script')
     for tag in script_tags
         if tag.type.toLowerCase() is 'text/brainfuck'
-            setTimeout(->
-                BrainFuck.to_js(tag.innerHTML)
-            , 0)
+            if tag.innerHTML  # is inline script
+                setTimeout(->
+                    BrainFuck.to_js(tag.innerHTML)
+                , 0)
+            else if tag.src  # is external
+                jax tag.src, (bf) ->
+                    BrainFuck.to_js(bf)
 
 # lazy
 window.BrainFuck = BrainFuck
